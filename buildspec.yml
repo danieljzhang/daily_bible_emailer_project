@@ -1,0 +1,30 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.11
+    commands:
+      - echo "Install Terraform"
+      - wget https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip -O /tmp/terraform.zip
+      - unzip /tmp/terraform.zip -d /usr/local/bin
+      - terraform -version
+
+  pre_build:
+    commands:
+      - echo "Preparing lambda package"
+      - cd lambda
+      - zip -r ../lambda/daily_bible_emailer.zip . || true
+      - cd ..
+      - echo "Terraform init"
+      - terraform init -input=false
+
+  build:
+    commands:
+      - echo "Terraform validate"
+      - terraform validate || true
+      - echo "Terraform apply"
+      - terraform apply -auto-approve -input=false
+
+artifacts:
+  files: []

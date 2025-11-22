@@ -1,0 +1,24 @@
+# terraform.tfvars.example
+# Copy this file to `terraform.tfvars` and fill in real values before running Terraform.
+# Do NOT commit `terraform.tfvars` if it contains secrets or sensitive values.
+
+aws_region = "us-east-1" # AWS region to deploy into
+
+# EventBridge schedule (default: daily at 07:00 UTC)
+schedule_expression = "cron(0 7 * * ? *)"
+
+# SES addresses — if your SES is in sandbox both must be verified
+sender_email = "sender@example.com"
+recipient_email = "recipient@example.com"
+
+# GitHub / CodeStar connection (required only if you want Terraform to create the pipeline)
+github_owner = "your-github-username-or-org"
+github_repo  = "daily_bible_emailer_project"
+github_branch = "main"
+codestar_connection_arn = "arn:aws:codestar-connections:us-east-1:123456789012:connection/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+
+# Terraform remote state S3 bucket (MUST exist before `terraform init`)
+state_bucket = "my-terraform-state-bucket"
+
+# Optional: artifact bucket name for CodePipeline. If omitted the Terraform default will be used.
+# artifact_bucket_name = "daily-bible-emailer-artifacts-xxxx"

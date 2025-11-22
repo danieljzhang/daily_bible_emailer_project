@@ -1,0 +1,7 @@
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+lambda/*.pyc
+lambda/__pycache__/
+lambda/daily_bible_emailer.zip
