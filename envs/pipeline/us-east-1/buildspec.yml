@@ -17,8 +17,8 @@ phases:
   pre_build:
     commands:
       - echo "Preparing lambda package"
-      # Zip from the root to control the path
-      - zip -r lambda/daily_bible_emailer.zip lambda/
+      # Zip the contents of the lambda directory, not the directory itself.
+      - zip -j lambda/daily_bible_emailer.zip lambda/*
       - echo "Changing to dev environment directory"
       - cd envs/dev/us-east-1
       - echo "Terraform init"
