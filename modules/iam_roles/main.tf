@@ -1,4 +1,26 @@
 # ------------------------------
+# iam_roles module
+# ------------------------------
+
+variable "name_prefix" {
+  description = "Prefix for all IAM roles"
+  type        = string
+  default     = "daily-bible"
+}
+
+variable "tags" {
+  description = "Tags for all IAM roles"
+  type        = map(string)
+  default     = {}
+}
+
+variable "region" {
+  description = "AWS region for Lambda and KMS"
+  type        = string
+  default     = "us-east-1"
+}
+
+# ------------------------------
 # Lambda Assume Role Policy
 # ------------------------------
 data "aws_iam_policy_document" "lambda_assume" {
@@ -37,7 +59,7 @@ data "aws_iam_policy_document" "ses_policy" {
       "ses:SendEmail",
       "ses:SendRawEmail"
     ]
-    resources = ["*"] # scope down if possible
+    resources = ["*"]
     effect    = "Allow"
   }
 }
@@ -49,16 +71,18 @@ resource "aws_iam_role_policy" "lambda_ses" {
 }
 
 # ------------------------------
-# KMS Access Policy (Default Lambda Key)
+# KMS Access for Lambda Environment Variables
 # ------------------------------
-variable "region" {
-  description = "AWS region for Lambda and KMS"
-  type        = string
-  default     = "us-east-1"
-}
 
+# Get AWS account ID
 data "aws_caller_identity" "current" {}
 
+# Get the actual key ARN for AWS-managed Lambda key
+data "aws_kms_alias" "lambda_default" {
+  name = "alias/aws/lambda"
+}
+
+# Policy to allow Lambda role to decrypt env variables
 data "aws_iam_policy_document" "lambda_kms" {
   statement {
     actions = [
@@ -66,10 +90,8 @@ data "aws_iam_policy_document" "lambda_kms" {
       "kms:Encrypt",
       "kms:GenerateDataKey*"
     ]
-    resources = [
-      "arn:aws:kms:${var.region}:${data.aws_caller_identity.current.account_id}:alias/aws/lambda"
-    ]
-    effect = "Allow"
+    resources = [data.aws_kms_alias.lambda_default.target_key_arn]
+    effect    = "Allow"
   }
 }
 
