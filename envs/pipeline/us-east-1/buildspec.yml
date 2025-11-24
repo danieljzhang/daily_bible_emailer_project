@@ -1,9 +1,5 @@
 version: 0.2
 
-env:
-# Per-environment buildspec for envs/pipeline/us-east-1
-# This file is used by CodeBuild when the pipeline for this env runs.
-
 phases:
   install:
     runtime-versions:
