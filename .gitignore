@@ -1,7 +1,39 @@
-.terraform/
+# Ignore local Terraform variable file (contains secrets)
+terraform.tfvars
+terraform.tfvars.json
+
+# Terraform state files
 *.tfstate
-*.tfstate.*
+*.tfstate.backup
+.terraformrc
+.terraform/
 .terraform.lock.hcl
+
+# Lambda package produced by the build process
+lambda/daily_bible_emailer.zip
+
+# Lambda package produced locally
+lambda/daily_bible_emailer.zip
+
+# Python caches and common files
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+
+# Editor directories and system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local env files
+.env
+*.pem
 lambda/*.pyc
 lambda/__pycache__/
-lambda/daily_bible_emailer.zip
+
+# Per-environment Terraform variable files
+# Ignore any terraform.tfvars inside envs/* folders (e.g. envs/pipeline/us-east-1/terraform.tfvars)
+envs/**/terraform.tfvars
+envs/**/backend.hcl

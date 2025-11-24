@@ -1,0 +1,18 @@
+## Example terraform.tfvars for envs/pipeline/us-east-1
+## Copy this file to `terraform.tfvars` in the same folder and fill in real values.
+
+# ARN of the CodeStar Connections connection (create via AWS CLI or console)
+codestar_connection_arn = "arn:aws:codestar-connections:us-east-1:123456789012:connection/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+
+# GitHub owner (user or org)
+github_owner = "your-github-username-or-org"
+
+# GitHub repository name (must match the repository connected in CodeStar)
+github_repo = "your-repo-name"
+
+# Branch to monitor (defaults to 'main')
+github_branch = "main"
+
+# Optional: provide an existing artifact bucket name to use for pipeline artifacts.
+# Leave empty to have Terraform create one for you.
+artifact_bucket_name = ""

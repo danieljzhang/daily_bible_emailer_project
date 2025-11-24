@@ -1,0 +1,7 @@
+Architecture (text diagram)
+
+[GitHub] -> CodePipeline -> CodeBuild -> S3 (artifacts) -> Lambda
+                               \-> Terraform apply (envs/*)
+EventBridge -> Lambda (daily trigger)
+SES (verified domain) used by Lambda to send email
+S3 + DynamoDB used as Terraform remote backend

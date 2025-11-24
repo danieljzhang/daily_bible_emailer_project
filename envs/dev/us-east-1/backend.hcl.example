@@ -1,0 +1,12 @@
+## backend.hcl.example
+# Copy this file to `backend.hcl` and replace the placeholder values before
+# running `terraform init -backend-config=backend.hcl`.
+#
+# IMPORTANT: The S3 backend configuration is evaluated before Terraform
+# variables; do not try to use Terraform variables inside the backend block.
+
+bucket = "my-terraform-state-bucket"        # <-- change to your state bucket
+key    = "terraform.tfstate"               # path/key to store the state file
+region = "us-east-1"                       # AWS region for the bucket
+encrypt = true
+dynamodb_table = "my-terraform-lock-table" # <-- change to your existing DynamoDB table for state locking
