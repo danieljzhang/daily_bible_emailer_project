@@ -9,3 +9,9 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "region" {
+  description = "AWS region for Lambda and KMS"
+  type        = string
+  default     = "us-east-1"
+}

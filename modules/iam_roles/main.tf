@@ -1,25 +1,6 @@
 # ------------------------------
 # iam_roles module
 # ------------------------------
-
-variable "name_prefix" {
-  description = "Prefix for all IAM roles"
-  type        = string
-  default     = "daily-bible"
-}
-
-variable "tags" {
-  description = "Tags for all IAM roles"
-  type        = map(string)
-  default     = {}
-}
-
-variable "region" {
-  description = "AWS region for Lambda and KMS"
-  type        = string
-  default     = "us-east-1"
-}
-
 # ------------------------------
 # Lambda Assume Role Policy
 # ------------------------------
