@@ -51,6 +51,12 @@ resource "aws_iam_role_policy" "lambda_ses" {
 # ------------------------------
 # KMS Access Policy (Default Lambda Key)
 # ------------------------------
+variable "region" {
+  description = "AWS region for Lambda and KMS"
+  type        = string
+  default     = "us-east-1"
+}
+
 data "aws_caller_identity" "current" {}
 
 data "aws_iam_policy_document" "lambda_kms" {
