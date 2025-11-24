@@ -13,7 +13,7 @@ module "pipeline" {
   # file system path like '../../../../buildspec.yml'.
   # Use a per-environment buildspec located inside the repo artifact.
   # This path is relative to the repo root inside the source artifact.
-  buildspec_path = "envs/pipeline/us-east-1/buildspec.yml"
+  buildspec_path = "envs/dev/us-east-1/buildspec.yml"
 }
 
 output "pipeline_name" {

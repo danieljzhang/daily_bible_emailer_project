@@ -1,7 +1,3 @@
-# Ignore local Terraform variable file (contains secrets)
-terraform.tfvars
-terraform.tfvars.json
-
 # Terraform state files
 *.tfstate
 *.tfstate.backup
@@ -35,5 +31,4 @@ lambda/__pycache__/
 
 # Per-environment Terraform variable files
 # Ignore any terraform.tfvars inside envs/* folders (e.g. envs/pipeline/us-east-1/terraform.tfvars)
-envs/**/terraform.tfvars
 envs/**/backend.hcl
