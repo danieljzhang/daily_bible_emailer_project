@@ -18,7 +18,10 @@ phases:
       - echo "Changing to dev environment directory"
       - cd envs/dev/us-east-1
       - echo "Terraform init"
-      - terraform init -input=false -backend-config=backend.hcl
+      # Provide backend configuration directly instead of using a backend.hcl file.
+      # This avoids having to commit the backend.hcl file to the repository.
+      # IMPORTANT: Replace the bucket and dynamodb_table names if you used different ones during bootstrap.
+      - terraform init -input=false -backend-config="bucket=terraform-backend-960258040170" -backend-config="key=daily_bible_emailer/dev/us-east-1/terraform.tfstate" -backend-config="region=us-east-1" -backend-config="terraform-state"
 
   build:
     commands:
