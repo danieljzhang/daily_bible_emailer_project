@@ -2,7 +2,7 @@
 # This file is ignored by git (see .gitignore). Edit values as needed.
 
 # ARN of the CodeStar Connections connection (created earlier)
-codestar_connection_arn = "arn:aws:codestar-connections:us-east-1:960258040170:connection/4a0ac050-2f18-4046-9ffe-593087dfdde7"
+codestar_connection_arn = "arn:aws:codeconnections:us-east-1:960258040170:connection/804744b5-4c14-4086-a4cd-3bcb47a79592"
 
 # GitHub owner and repo (update if different)
 github_owner = "danieljzhang"
