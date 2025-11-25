@@ -72,7 +72,6 @@ resource "aws_codepipeline" "pipeline" {
         ConnectionArn    = var.codestar_connection_arn
         FullRepositoryId = "${var.github_owner}/${var.github_repo}"
         BranchName       = var.github_branch
-
         DetectChanges    = true
       }
 
